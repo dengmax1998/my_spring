@@ -1,5 +1,8 @@
 package cn.bugstack.springframework.source;
 
+import cn.bugstack.springframework.source.factory.config.BeanDefinition;
+import cn.bugstack.springframework.source.factory.support.BeanFactory;
+import cn.bugstack.springframework.source.factory.support.DefaultListableBeanFactory;
 import org.junit.Test;
 import cn.bugstack.springframework.source.bean.UserService;
 
@@ -12,16 +15,26 @@ import cn.bugstack.springframework.source.bean.UserService;
 public class ApiTest {
 
     @Test
-    public void testBean(){
-        //初始化BeanFactory
-        BeanFactory beanFactory = new BeanFactory();
+    public void testBean() throws InstantiationException, IllegalAccessException {
+
+        //获取bean工厂
+        DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
 
         //注册bean
-        BeanDefinition beanDefinition = new BeanDefinition(new UserService());
-        beanFactory.registerBeanDefinition("userService",beanDefinition);
+        BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
+        defaultListableBeanFactory.registryBeanDefinition("userService",beanDefinition);
 
-        //获取bean
-        UserService userService = (UserService)beanFactory.getBean("userService");
+        //第一次获取bean
+        UserService userService = (UserService)defaultListableBeanFactory.getBean("userService");
         userService.queryUserInfo();
+        System.out.println(userService);
+
+        //第二次获取bean
+        UserService userService_singleton = (UserService)defaultListableBeanFactory.getBean("userService");
+        userService_singleton.queryUserInfo();
+        System.out.println(userService_singleton);
+
+        //比较两个bean是否是同一个bean
+        System.out.println(userService==userService_singleton);
     }
 }
