@@ -2,6 +2,8 @@ package cn.bugstack.springframework.source.factory.support;
 
 import cn.bugstack.springframework.source.factory.BeansExecption;
 
+import java.beans.Beans;
+
 /**
  * @description:
  * @author：邓兴
@@ -11,4 +13,6 @@ import cn.bugstack.springframework.source.factory.BeansExecption;
 public interface BeanFactory {
 
     Object getBean(String beanName) throws BeansExecption, InstantiationException, IllegalAccessException;
+
+    Object getBean(String beanName ,Object...args) throws BeansExecption, InstantiationException, IllegalAccessException;
 }

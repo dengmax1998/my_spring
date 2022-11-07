@@ -1,6 +1,7 @@
 package cn.bugstack.springframework.source.factory.support;
 
 
+import cn.bugstack.springframework.source.factory.BeansExecption;
 import cn.bugstack.springframework.source.factory.config.BeanDefinition;
 
 /**
@@ -12,17 +13,25 @@ import cn.bugstack.springframework.source.factory.config.BeanDefinition;
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry  implements BeanFactory {
 
     @Override
-    public Object getBean(String beanName) throws InstantiationException, IllegalAccessException {
-        Object singleton = getSingleton(beanName);
-        if (null != singleton){
-            return singleton;
+    public Object getBean(String beanName) throws BeansExecption, InstantiationException, IllegalAccessException {
+        return doGetBean(beanName,null);
+    }
+
+    @Override
+    public Object getBean(String beanName, Object...args) throws BeansExecption, InstantiationException, IllegalAccessException {
+        return doGetBean(beanName,args);
+    }
+
+    public <T> T doGetBean(String beanName,final Object[] args) throws InstantiationException, IllegalAccessException {
+        Object bean = getSingleton(beanName);
+        if (null != bean){
+            return (T) bean;
         }
         BeanDefinition beanDefinition = getBeanDefinition(beanName);
-        Object bean = creatBean(beanName, beanDefinition);
 
-        return bean;
+        return creatBean(beanName, beanDefinition, args);
     }
     protected abstract BeanDefinition getBeanDefinition(String beanName);
 
-    protected abstract Object creatBean(String beanName, BeanDefinition beanDefinition) throws InstantiationException, IllegalAccessException;
+    protected abstract <T> T creatBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws InstantiationException, IllegalAccessException;
 }

@@ -14,27 +14,41 @@ import cn.bugstack.springframework.source.bean.UserService;
  */
 public class ApiTest {
 
+//    @Test
+//    public void testBean() throws InstantiationException, IllegalAccessException {
+//
+//        //获取bean工厂
+//        DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
+//
+//        //注册bean
+//        BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
+//        defaultListableBeanFactory.registryBeanDefinition("userService",beanDefinition);
+//
+//        //第一次获取bean
+//        UserService userService = (UserService)defaultListableBeanFactory.getBean("userService","小傅哥");
+//        userService.queryUserInfo();
+//        System.out.println(userService);
+//
+////        //第二次获取bean
+////        UserService userService_singleton = (UserService)defaultListableBeanFactory.getBean("userService");
+////        userService_singleton.queryUserInfo();
+////        System.out.println(userService_singleton);
+////
+////        //比较两个bean是否是同一个bean
+////        System.out.println(userService==userService_singleton);
+//    }
+
     @Test
-    public void testBean() throws InstantiationException, IllegalAccessException {
+    public void test_BeanFactory() throws InstantiationException, IllegalAccessException {
+        // 1.初始化 BeanFactory
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        //获取bean工厂
-        DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
-
-        //注册bean
+        // 3. 注入bean
         BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
-        defaultListableBeanFactory.registryBeanDefinition("userService",beanDefinition);
+        beanFactory.registryBeanDefinition("userService", beanDefinition);
 
-        //第一次获取bean
-        UserService userService = (UserService)defaultListableBeanFactory.getBean("userService");
+        // 4.获取bean
+        UserService userService = (UserService) beanFactory.getBean("userService", "小傅哥");
         userService.queryUserInfo();
-        System.out.println(userService);
-
-        //第二次获取bean
-        UserService userService_singleton = (UserService)defaultListableBeanFactory.getBean("userService");
-        userService_singleton.queryUserInfo();
-        System.out.println(userService_singleton);
-
-        //比较两个bean是否是同一个bean
-        System.out.println(userService==userService_singleton);
     }
 }
