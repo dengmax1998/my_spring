@@ -1,5 +1,6 @@
 package cn.bugstack.springframework.source.factory.support;
 
+import cn.bugstack.springframework.source.factory.BeansExecption;
 import cn.bugstack.springframework.source.factory.config.BeanDefinition;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.NoOp;
@@ -14,7 +15,7 @@ import java.lang.reflect.Constructor;
  */
 public class CglibSubclassingInstantiationStrategy implements InstantiationStrategy{
     @Override
-    public Object instantiate(String beanName, BeanDefinition beanDefinition, Constructor constructor, Object[] args) {
+    public Object instantiate(String beanName, BeanDefinition beanDefinition, Constructor constructor, Object[] args) throws BeansExecption {
         //创建一个代理类
         Enhancer enhancer = new Enhancer();
         //设置要代理的对象

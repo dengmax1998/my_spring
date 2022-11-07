@@ -19,5 +19,5 @@ public interface InstantiationStrategy {
      * @param args 具体入参
      * @return 实例化的bean对象
      */
-    Object instantiate(String beanName , BeanDefinition beanDefinition, Constructor constructor, Object[] args);
+    Object instantiate(String beanName , BeanDefinition beanDefinition, Constructor constructor, Object[] args) ;
 }

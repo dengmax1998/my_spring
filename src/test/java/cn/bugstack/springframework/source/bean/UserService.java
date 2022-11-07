@@ -17,4 +17,14 @@ public class UserService {
     public UserService(String name) {
         this.name = name;
     }
+
+    public UserService() {
+    }
+
+    @Override
+    public String toString() {
+        return "UserService{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

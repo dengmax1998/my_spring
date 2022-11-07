@@ -29,7 +29,7 @@ public abstract class AbstractAutowireCapabkeBeanFactory extends AbstractBeanFac
         return bean;
     }
 
-    protected Object creatBeanInstance(String beanName, BeanDefinition beanDefinition, Object[] args){
+    protected Object creatBeanInstance(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansExecption{
         Constructor constructorToUse = null;
         Class<?> beanClass = beanDefinition.getBeanClass();
         Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
