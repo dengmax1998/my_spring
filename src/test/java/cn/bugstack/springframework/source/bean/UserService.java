@@ -8,15 +8,14 @@ package cn.bugstack.springframework.source.bean;
  */
 public class UserService {
 
-    private String  name;
+    private String  uId;
+
+    private UserDao userDao;
 
     public void queryUserInfo(){
-        System.out.println("查询用户信息");
+        System.out.println("查询用户信息:"+userDao.queryUserName(uId));
     }
 
-    public UserService(String name) {
-        this.name = name;
-    }
 
     public UserService() {
     }
@@ -24,7 +23,7 @@ public class UserService {
     @Override
     public String toString() {
         return "UserService{" +
-                "name='" + name + '\'' +
+                "uId='" + uId + '\'' +
                 '}';
     }
 }

@@ -1,8 +1,12 @@
 package cn.bugstack.springframework.source.factory.support;
 import cn.bugstack.springframework.source.factory.BeansExecption;
+import cn.bugstack.springframework.source.factory.PropertyValue;
+import cn.bugstack.springframework.source.factory.PropertyValues;
 import cn.bugstack.springframework.source.factory.config.BeanDefinition;
-
 import java.lang.reflect.Constructor;
+import cn.hutool.core.bean.BeanUtil;
+import cn.bugstack.springframework.source.factory.config.BeanReference;
+import cn.hutool.core.bean.BeanUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +29,7 @@ public abstract class AbstractAutowireCapabkeBeanFactory extends AbstractBeanFac
         Object bean = null;
         try {
             bean = creatBeanInstance(beanName,beanDefinition,args);
+            addPropertyValues(beanName,bean,beanDefinition);
             logger.info("输出bean{}",bean.toString());
         }catch (Exception e){
             throw new BeansExecption("Instantiation of bean failed", e);
@@ -45,6 +50,19 @@ public abstract class AbstractAutowireCapabkeBeanFactory extends AbstractBeanFac
         }
         Object instantiate = getInstantiationStrategy().instantiate(beanName, beanDefinition, constructorToUse, args);
         return instantiate;
+    }
+
+    protected void addPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) throws InstantiationException, IllegalAccessException {
+        PropertyValues propertyValues = beanDefinition.getPropertyValues();
+        for (PropertyValue p: propertyValues.getPropertyValues()) {
+            String name = p.getName();
+            Object value = p.getValue();
+            if (value instanceof BeanReference){
+                BeanReference beanReference = (BeanReference) value;
+                value = getBean(beanReference.getBeanName());
+            }
+            BeanUtil.setFieldValue(bean, name, value);
+        }
     }
 
     public InstantiationStrategy getInstantiationStrategy() {
