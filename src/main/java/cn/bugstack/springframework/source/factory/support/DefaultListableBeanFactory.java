@@ -2,7 +2,7 @@ package cn.bugstack.springframework.source.factory.support;
 
 
 
-import cn.bugstack.springframework.source.factory.BeansExecption;
+import cn.bugstack.springframework.source.BeansExecption;
 import cn.bugstack.springframework.source.factory.config.BeanDefinition;
 
 import java.util.HashMap;

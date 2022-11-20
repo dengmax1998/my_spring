@@ -1,8 +1,6 @@
-package cn.bugstack.springframework.source.factory.support;
+package cn.bugstack.springframework.source.factory;
 
-import cn.bugstack.springframework.source.factory.BeansExecption;
-
-import java.beans.Beans;
+import cn.bugstack.springframework.source.BeansExecption;
 
 /**
  * @description:

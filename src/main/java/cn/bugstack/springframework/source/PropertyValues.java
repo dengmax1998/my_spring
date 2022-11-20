@@ -1,4 +1,6 @@
-package cn.bugstack.springframework.source.factory;
+package cn.bugstack.springframework.source;
+
+import cn.bugstack.springframework.source.PropertyValue;
 
 import java.util.ArrayList;
 import java.util.List;

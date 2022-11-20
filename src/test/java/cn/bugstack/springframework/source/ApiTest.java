@@ -1,18 +1,11 @@
 package cn.bugstack.springframework.source;
 
 import cn.bugstack.springframework.source.bean.UserDao;
-import cn.bugstack.springframework.source.factory.PropertyValue;
-import cn.bugstack.springframework.source.factory.PropertyValues;
 import cn.bugstack.springframework.source.factory.config.BeanDefinition;
 import cn.bugstack.springframework.source.factory.config.BeanReference;
-import cn.bugstack.springframework.source.factory.support.BeanFactory;
 import cn.bugstack.springframework.source.factory.support.DefaultListableBeanFactory;
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.NoOp;
 import org.junit.Test;
 import cn.bugstack.springframework.source.bean.UserService;
-
-import java.lang.reflect.Constructor;
 
 /**
  * @description:

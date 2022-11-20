@@ -1,6 +1,6 @@
 package cn.bugstack.springframework.source.factory.config;
 
-import cn.bugstack.springframework.source.factory.PropertyValues;
+import cn.bugstack.springframework.source.PropertyValues;
 
 /**
  * @description:

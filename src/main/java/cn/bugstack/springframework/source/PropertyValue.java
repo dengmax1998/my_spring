@@ -1,4 +1,4 @@
-package cn.bugstack.springframework.source.factory;
+package cn.bugstack.springframework.source;
 
 /**
  * @description:
